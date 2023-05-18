@@ -42,7 +42,7 @@ in process..
 
 
 <div align="center">
-  <img src="images/user3es.JPG" alt="UserInterface" width="80%">
+  <img src="images/user3es.png" alt="UserInterface" width="80%">
   <p> Figure 2. User interface for annotating tweets in the platform.. </p>
 </div>
 
