@@ -90,7 +90,7 @@ Werkzeug==2.0.2
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Author
+## Authors
 **Karina Yaneth Gazca Hernández**
 
 **Alejandro Molina Villegas**
