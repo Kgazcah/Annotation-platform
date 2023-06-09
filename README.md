@@ -46,7 +46,7 @@ karina.gazca@cinvestav.mx, edwyn.aldana@cinvestav.mx,  amolina@centrogeo.edu.mx
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Implementation
-in process.. 
+
 
 <div align="center">
   <img src="images/admin.png" alt="Admin" width="80%">
@@ -57,7 +57,7 @@ in process..
 
 <div align="center">
   <img src="images/user3es.png" alt="UserInterface" width="80%">
-  <p> Figure 2. User interface for annotating tweets in the platform.. </p>
+  <p> Figure 2. User interface for annotating tweets in the platform. </p>
 </div>
 
 
@@ -70,6 +70,7 @@ python --version
 
 Python 3.10.0
 
+
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -77,7 +78,14 @@ Python 3.10.0
 ## Dependencies
 ```
 pandas==1.3.5
-in process...
+cryptography==38.0.1
+Flask==2.0.2
+Flask_Session==0.4.0
+Flask_SQLAlchemy==2.5.1
+numpy==1.23.0
+scikit_learn==1.2.2
+SQLAlchemy==1.4.36
+Werkzeug==2.0.2
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
