@@ -29,6 +29,20 @@
 
 <p style="text-align: justify;">This project is about an annotation platform that enables users to annotate data by uploading a dataset. It offers the possibility to set the desired value of the inter-annotator kappa agreement coefficient, which determines the level of agreement required among annotators to annotate unlabeled data from the dataset. This customization ensures the production of high-quality annotated data. Additionally, the platform allows administrators to set the number of documents each user should annotate once they have passed the defined threshold.</p>
 
+<p style="text-align: justify;">
+The methodology is described in the article:
+
+Molina-Villegas, A., Cattin T., Gazca-Hernandez K. & Aldana-Bobadilla E. (2023). High-quality Data from Crowdsourcing Towards the Creation of The Mexican Anti-immigrant Speech Corpus. *Applied Sciences. Section: Computing and Artificial Intelligence. ISSN 2076-3417 (in press)*
+</p>
+  
+<p style="text-align: justify;">
+If you want a copy of the related data please send us an email:
+</p>
+
+```
+karina.gazca@cinvestav.mx, edwyn.aldana@cinvestav.mx,  amolina@centrogeo.edu.mx
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Implementation
