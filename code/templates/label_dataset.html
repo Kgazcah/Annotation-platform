@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid pt-5">
+    <form action="/addDataset?label={{ label_name }}" method="POST" enctype="multipart/form-data" class="was-validated">
+        <div class="row">
+            <div class="col">
+                <h2>Etiqueta: <b>{{ label_name }}</b></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="dataset">Selecciona el/los dataset(s) para agregar esta etiqueta</label>
+                <select multiple class="form-select" id="dataset" name="dataset" required>
+                {% for dataset in list %}
+                    <option>{{ dataset[0].name_dataset }}</option>
+                {% endfor %}
+                </select>
+        </div>
+        <div class="row pt-2">
+            <div class="col"></div>
+            <div class="col">
+                <button id="btn_send" class="btn btn-primary" type="submit" style="margin-right: 20px;" onclick="send();"><span class="fa-solid fa-upload"></span> Agregar</button>
+                <a class="btn btn-danger" style="margin-right: 20px;" href="/labelsList">Cancelar</a>
+            </div>
+            <div class="col"></div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+{% block stylesheet %}
+<link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div id="all">
+  <div class="container-fluid p-5 my-3 bg-dark text-white text-center">
+    <h1>El discurso antiinmigrante</h1>
+  </div>
+  <div class="container-fluid">
+
+    <div class="row p-2"></div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <h5><b>¿Qué vas a hacer?</b></h5>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <p
+          class="text-justify"
+          style="text-align: justify; text-justify: inter-word"
+        >
+          Vas a evaluar mensajes de texto, de
+          usuarios mexicanos, publicados en la plataforma Twitter, para saber si
+          contienen o no, discurso antiinmigrante. El objetivo es construir un
+          modelo de inteligencia artificial para la clasificación automática del 
+          discurso antiinmigrante; por lo cual tus respuestas son muy importantes.
+        </p>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <h5>
+          <b><i>¿Qué es el discurso antiinmigrante?</i></b>
+        </h5>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <ol>
+          <li style="text-align: justify; text-justify: inter-word"><b>Rechaza</b>, desprecia o amenaza a las personas migrantes. </li>
+          <li style="text-align: justify; text-justify: inter-word">Puede presentar al migrante como <b>“un otro”</b>, de manera negativa; como un sujeto con derechos inferiores.</li>
+          <li style="text-align: justify; text-justify: inter-word">Utiliza a menudo <b>prejuicios negativos</b> o estereotipos; por ejemplo presentan a los migrantes como personas ilegales, criminales, flojos, exigentes, sucios e irresponsables. </li>
+          <li style="text-align: justify; text-justify: inter-word">Presenta al migrante como un <b>“invasor”</b> que provoca disturbios donde se instala o por donde se traslada. </li>
+          <li style="text-align: justify; text-justify: inter-word">Tiende a presentar al migrante como una <b>"amenaza"</b> a la soberanía, la seguridad, la identidad, la cultura, la estabilidad (política o económica). </li>
+        </ol>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row p-2"></div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <h5>
+          <b><i>¿Cómo anotar el discurso antiinmigrante publicado en la plataforma Twitter?</i></b>
+        </h5>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+          <p
+          class="text-justify"
+          style="text-align: justify; text-justify: inter-word"
+        >
+        Si el mensaje contiene al menos una de las características antes mencionadas, entonces es antiinmigrante, en este caso deberás presionar el botón <img src="../static/images/antiinmigrante_boton.JPG" width="150" /> (o presionar la tecla a). Si no, no lo es, en este caso deberás presionar el botón <img src="../static/images/no_antiinmigrante_boton.JPG" width="150" />(o presionar la tecla n). 
+        Existen mensajes ambiguos, en este caso te recomendamos leer nuevamente las instrucciones de anotado ubicadas en la parte inferior o consultar el glosario en caso de tener dudas con algún término.
+        
+        </p>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <!-- <div class="row p-2"></div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <h5>
+          <b id="Con">Consejos</b>
+        </h5>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+          <p style="text-align: justify; text-justify: inter-word">Estas recomendaciones pueden ayudarle en su anotación:</p>
+        <ol>
+          <li style="text-align: justify; text-justify: inter-word">Preguntarse si: ¿El tono general del mensaje es negativo? ¿Contra quién o qué está dirigido el mensaje? ¿El mensaje es irónico o sarcástico? ¿Quién escribe el tuit y con qué objetivo?  </li>
+          <li style="text-align: justify; text-justify: inter-word">Recuerde que los mensajes fueron publicados en Twitter y tienen que ser considerados como una toma de posición pública sobre la cuestión de la migración. De esta manera, es importante preguntarse si el mensaje podría reforzar posiciones negativas en la discusión más general sobre el tema.</li>
+        </ol>
+      </div>
+      <div class="col-sm-1"></div>
+    </div> -->
+
+    <div class="row p-2"></div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <h5>
+          <b id="Glo">Glosario</b>
+        </h5>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <ul>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Devolución </i>:</b> un eufemismo utilizado para calificar el proceso de deportación forzado o asistido de migrantes indocumentados hacia su país de origen.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Presentación de migrantes</i> :</b> un eufemismo utilizado para calificar el proceso de detención de migrantes indocumentados.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Rescate o aseguramiento de migrantes</i> :</b> eufemismos utilizados para calificar los operativos de control y verificación de documentación migratoria que llevan a la detención de los migrantes indocumentados.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Caravana migrante</i> :</b> gran grupo de migrantes indocumentados que viajan juntos para llegar a Estados Unidos.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Maras, mareros</i> :</b> perteneciente a la Mara-Salvatrucha, termino genérico para referirse a las pandillas de distintos países de Centroamérica.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>George Soros</i> :</b> financiero y filántropo estadounidense, principal donante de la campaña electoral de Hillary Clinton, ha sido acusado de financiar las caravanas de migrantes.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Pueblos sin Fronteras</i> :</b> asociación sin fines de lucro establecida en Estados Unidos que ha tenido un papel importante en la organización de las caravanas.</li>
+          <li style="text-align: justify; text-justify: inter-word"><b><i>Coyote/pollero</i> :</b> personas que se dedican al traslado de migrantes indocumentados a cambio de remuneración.</li>
+        </ul>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col">
+        <a href="#" class="btn btn-danger" onclick="$.post('/annotation?dataset={{ session.secret }}', function(data, status) {$('#all').html(data);})">Iniciar anotado</a>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row p-2"></div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $(document).keydown(function (e) {
+      switch (e.keyCode) {
+        case 13:
+          var btn = document.getElementById("btn_send_answers");
+          if (btn) {
+            btn.click();
+          }
+          break;
+        case 37:
+          var prev = document.getElementById("previous");
+          if (prev.style.visibility == "hidden") {
+          } else {
+            prev.click();
+          }
+          break;
+        case 39:
+          var next = document.getElementById("next");
+          if (next.style.visibility == "hidden") {
+          } else {
+            next.click();
+          }
+          break;
+        {% for label in labels %}case {{ label.label_shortcut_key }}:
+          var btn = document.getElementById("{{ label.label_shortcut_key }}");
+          btn.click();
+          break;
+        {% endfor %}
+        default: return;
+      }
+      e.preventDefault();
+    });
+  });
+</script>
+
+{% endblock %}

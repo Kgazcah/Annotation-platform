@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid pt-5">
+    {% if dataset %}
+    <form action="/edit?dataset={{ dataset.name_dataset }}" method="POST" class="was-validated">
+        <div class="row">
+            <div class="col">
+                <label for="dataset" class="form-label">Dataset</label>
+                <input type="text" id="dataset" name="dataset" class="form-control" value="{{ dataset.name_dataset }}" required readonly/>
+            </div>
+            <div class="col">
+                <label for="control" class="form-label">Datos de control</label>
+                <input type="text" id="control" name="control" class="form-control" value="{{ dataset.name_control }}" required readonly/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="number" class="form-control" name="kappa_limit" min="0.001" max="1" step="0.001" value="{{ dataset.kappa_limit }}" oninput="this.form.kappa_limit_value.value=this.value" />
+                    <input type="range" class="form-range" id="kappa_limit_value" placeholder="Coeficiente Kappa de control para anotar " name="kappa_limit_value" min="0.001" value="{{ dataset.kappa_limit }}" max="1.0" step="0.001" oninput="this.form.kappa_limit.value=this.value" required/>
+                    <label for="kappa_limit_value">Coeficiente Kappa de control para anotar</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="number" class="form-control" id="num_lines_per_evaluation" placeholder="Cantidad de frases por evaluar para cada usuario" name="num_lines_per_evaluation" min="1" value="{{ dataset.num_chunk_lines }}" required/>
+                    <label for="num_lines_per_evaluation">Cantidad de frases por evaluar para cada usuario</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">
+                <button id="btn_spinner" class="btn btn-primary" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm"></span> Guardando...
+                </button>
+                <button id="btn_send" class="btn btn-primary" type="submit" style="margin-right: 20px;" onclick="send();">
+                    <span class="fa-solid fa-upload"></span> Guardar
+                </button>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </form>
+    {% endif %}
+    {% if label %}
+    <form action="/edit?label={{ label.label_name }}" method="POST"  class="was-validated">
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text" class="form-control" id="name" name="name" value="{{ label.label_name }}" readonly required/>
+                    <label for="name">Etiqueta</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="number" class="form-control" id="value" placeholder="Ingresa el valor de la etiqueta" name="value" min="0" value="{{ label.label_value }}" required/>
+                    <label for="value">Ingresa el valor de la etiqueta</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="color" class="form-control" id="color" placeholder="Selecciona el color de la etiqueta" name="color" value="{{ label.label_color }}" required/>
+                    <label for="color">Selecciona el color de la etiqueta</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="color" class="form-control" id="color_text" placeholder="Selecciona el color del texto" name="color_text" value="{{ label.label_text_color }}" required/>
+                    <label for="color_text">Selecciona el color del texto</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <select id="shortcut" name="shortcut" class="form-select" required>
+                        <option value="sin_asignar">No asignar tecla rápida</option>
+                        <option value="65">a</option><option value="66">b</option><option value="67">c</option><option value="68">d</option>
+                        <option value="69">e</option><option value="70">f</option><option value="71">g</option><option value="72">h</option>
+                        <option value="73">i</option><option value="74">j</option><option value="75">k</option><option value="76">l</option>
+                        <option value="77">m</option><option value="78">n</option><option value="79">o</option><option value="80">p</option>
+                        <option value="81">q</option><option value="82">r</option><option value="83">s</option><option value="84">t</option>
+                        <option value="85">u</option><option value="86">v</option><option value="87">w</option><option value="88">x</option>
+                        <option value="89">y</option><option value="90">z</option><option value="49">1</option><option value="50">2</option>
+                        <option value="51">3</option><option value="52">4</option><option value="53">5</option><option value="54">6</option>
+                        <option value="55">7</option><option value="56">8</option><option value="57">9</option><option value="48">0</option>
+                    </select>
+                    <label for="shortcut">Selecciona la tecla rápida para esta etiqueta</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">
+                <button id="btn_send" class="btn btn-primary" type="submit" style="margin-right: 20px;">
+                    <span class="fa-solid fa-upload"></span> Guardar
+                </button>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </form>
+    <script>
+        $('#shortcut').val('{{ label.label_shortcut_key }}');
+    </script>
+    {% endif %}
+    {% if user %}
+    <div class="form-index">
+        <form class="form" action="/edit?user={{ user.user_name }}" method="post">
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" id="username" name="username" placeholder="username" class="form-control" value="{{ user.user_name }}" readonly required/>
+            <label for="username">Username</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" id="email" name="email" placeholder="email address" class="form-control" value="{{ user.user_email }}" required/>
+            <label for="email">Email</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <select class="form-select" id="rol" name="rol" required>
+            <option value="usuario">Usuario</option>
+            <option value="administrador">Administrador</option>
+            </select>
+            <label for="rol">Rol</label>
+        </div>
+        <button class="button-index" onclick="validate()">Guardar</button>
+        </form>
+    </div>
+    <script>
+        $('#rol').val('{{ user.user_rol }}');
+    </script>
+    {% endif %}
+</div>
+
+{% endblock %}

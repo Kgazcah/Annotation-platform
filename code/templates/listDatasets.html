@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container-fluid pt-5">
+    <div class="table-responsive-xl">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Dataset</th>
+                    {% if session['rol'] == 'administrador' %}
+                    <th>Control</th>
+                    <th>Kappa</th>
+                    <th>Frases</th>
+                    <th>Evaluadas</th>
+                    <th>Chunk</th>
+                    <th>Usuario</th>
+                    {% endif %}
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dataset in list %}
+                    {% if session['rol'] == 'administrador' %}
+                <form action="/delete" method="post">
+                <tr>
+                    <td>{{ dataset[0].name_dataset }}<input id="dataset" name="dataset" type="hidden" value="{{ dataset[0].name_dataset }}" /></td>
+                    <td>{{ dataset[0].name_control.replace("control/","",1) }}</td>
+                    <td>{{ dataset[0].kappa_limit }}</td>
+                    <td>{{ dataset[0].num_lines_dataset }}</td>
+                    <td>{{ dataset[0].num_assigned_lines }}</td>
+                    <td>{{ dataset[0].num_chunk_lines }}</td>
+                    <td>{{ dataset[0].created_by }}</td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="/edit?dataset={{ dataset[0].name_dataset }}">Editar</a>
+                        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                        <a class="btn btn-outline-danger" href="/instructions?dataset={{ dataset[1] }}">Etiquetar</a>
+                        <a class="btn btn-outline-danger" href="/results?dataset={{ dataset[0].name_dataset }}">Ver Evaluadas</a>
+                        <a class="btn btn-outline-danger" href="/download?dataset={{ dataset[0].name_dataset }}">Descargar</a>
+                    </td>
+                </tr>
+                </form>
+                    {% else %}
+                <tr>
+                    <td>{{ dataset[0] }}</td>
+                    <td>
+                        <a class="btn btn-outline-danger" href="/instructions?dataset={{ dataset[1] }}">Etiquetar</a>
+                    </td>
+                </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </table>
+    </div>
+</div>
+{% endblock %}

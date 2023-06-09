@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-fluid pt-5">
+    <form action="/dataset" method="POST" enctype="multipart/form-data" class="was-validated">
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="number" class="form-control" name="kappa_limit" min="0.001" max="1" step="0.001" value="0.623" oninput="this.form.kappa_limit_value.value=this.value" />
+                    <input type="range" class="form-range" id="kappa_limit_value" placeholder="Coeficiente Kappa de control para anotar " name="kappa_limit_value" min="0.001" value="0.623" max="1.0" step="0.001" oninput="this.form.kappa_limit.value=this.value" required/>
+                    <label for="kappa_limit_value">Coeficiente Kappa de control para anotar</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating mb-3 mt-3">
+                    <input type="number" class="form-control" id="num_lines_per_evaluation" placeholder="Cantidad de frases por evaluar para cada usuario" name="num_lines_per_evaluation" min="1" value="0" required/>
+                    <label for="num_lines_per_evaluation">Cantidad de frases por evaluar para cada usuario</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="dataset" class="form-label">Ingresa el dataset</label>
+                <input type="file" id="dataset" name="dataset" class="form-control" style="color:white" accept=".csv, .txt" required/>
+                <div class="valid-feedback">Archivo seleccionado.</div>
+                <div class="invalid-feedback">Selecciona un archivo CSV o TXT.</div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <label for="control" class="form-label">Ingresa los datos de control</label>
+                    <input type="file" id="control" name="control" class="form-control" style="color:white" accept=".csv, .txt" required="required"/>
+                    <div class="valid-feedback">Archivo seleccionado.</div>
+                    <div class="invalid-feedback">Selecciona un archivo CSV o TXT.</div>
+                </div>
+                <div class="row">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="no_control" name="no_control" value="NO_CONTROL" checked />
+                        <label class="form-check-label" for="no_control">¿Agregar dataset de control?</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col">
+                <button id="btn_spinner" class="btn btn-primary" style="display: none;" disabled>
+                    <span class="spinner-border spinner-border-sm"></span> Enviando...
+                </button>
+                <button id="btn_send" class="btn btn-primary" type="submit" style="margin-right: 20px;" onclick="send();">
+                    <span class="fa-solid fa-upload"></span> Enviar
+                </button>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#no_control").on('change',function(){
+            if( $(this).is(':checked') ) {
+                $("#control").attr('required','required');
+            } else {
+                $("#control").removeAttr('required');
+            }
+        });
+    });
+</script>
+{% endblock %}
